@@ -94,12 +94,18 @@ class Fraction {
   public static Fraction[] quadraticFormula(Fraction a, Fraction b, Fraction c){
     a.setDenominator(a.getNumerator()*4);
     Fraction expression = copy((b.product(b)).difference(a.product(c)));
-    Fraction zero = new Fraction(0, 1);
-    if (min(expression, zero) == expression){
-        return null;
+    double expressionDouble = expression.getNumerator() / expression.getDenominator();
+    Fraction[] rv = new Fraction[2];
+    if (expressionDouble == 0){
+      rv[0].setNumerator(-1*b.getNumerator()*a.getDenominator());
+      rv[0].setDenominator(4*a.getNumerator());
+      return rv;
     }
-    if (min(expression, zero) == zero){
-
+    if (expressionDouble < 0){
+      return null;
+    }
+    else{
+      rv[0] = new Fraction()
     }
   }
   // Nonstatic Methods
@@ -211,12 +217,12 @@ class Fraction {
     return quot;
   }
   public Fraction sqrt(){
-    Fraction f = new Fraction(numerator, denominator)
+    Fraction f = new Fraction(numerator, denominator);
     for (int i = 1; i*i<=numerator; i++){
       f.numerator = i;
     }
     for (int k = 1; k*k<=numerator; k++){
-      f.denominator = i;
+      f.denominator = k;
     }
     f.simplify();
     return f;
